@@ -13,13 +13,23 @@ li {
     padding-right: 20px;
 }
 
-h1 {
+h1,
+p {
     padding-left: 20px;
 }
 
 fieldset {
-    width: 550px;
+    width: 140px;
     padding: 10px;
     border-radius: 10px;
     margin-left: 20px;
+}
+
+input,
+label {
+    display: block;
+}
+
+input {
+    margin-bottom: 10px;
 }

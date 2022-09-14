@@ -1,3 +1,37 @@
+<?php
+session_start();
+
+// $loginOrProfilePage = 'login';
+
+if ($_GET['clearSessionVariablesAndEndSession'] === 'true') {
+    session_unset();
+    session_destroy();
+    header("Location: 3.php?page=home");
+    exit;
+}
+
+if ($_SESSION['userLoggedIn']) {
+}
+
+if (empty($_SESSION['userLoggedIn'])) {
+}
+
+if (!empty($_POST['login'])) {
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        if ($_POST['username'] === 'aarne' && $_POST['password'] === 'sana') {
+            $_SESSION['userLoggedIn'] = $_POST['username'];
+            header("Location: 3.php?page=profile");
+            exit;
+        } else {
+            echo "Invalid username or password.";
+        }
+    } else {
+        echo "You need to enter both username and password.";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +48,7 @@
         <ul>
             <li><a href="3.php?page=home">Home</a></li>
             <li><a href="3.php?page=info">Info</a></li>
-            <li><a href="3.php?page=login">Login</a></li>
+            <li><a href="3.php?page=<?php $_SESSION['userLoggedIn'] ? print "profile" : print "login" ?>"><?php $_SESSION['userLoggedIn'] ? print "Profile" : print "Login" ?></a></li>
             <li><a href="3.php?page=contact">Contact</a></li>
         </ul>
     </nav>
@@ -52,6 +86,12 @@
     <?php endif; ?>
 
     <?php
+
+    if ($_GET['page'] === 'profile') {
+        echo "<h1>Hi ", $_SESSION['userLoggedIn'], "</h1>";
+        echo "<p><a href=\"3.php?clearSessionVariablesAndEndSession=true\">Log out.</a></p>";
+    }
+
     if ($_GET['page'] === 'contact') {
         echo "<h1>Don't contact us, we'll contact you.</h1>";
     }
