@@ -9,3 +9,8 @@ fieldset {
     margin: 20px;
     width: 550px;
 }
+
+ul {
+    margin: 0 20px;
+    list-style-type: none;
+}
