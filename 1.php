@@ -28,7 +28,10 @@
     // echo var_export($_POST);
     // echo "</pre>";
 
-
+    if (!empty($_GET['clearSessionVariablesAndCloseSession'])) {
+        session_unset();
+        session_destroy();
+    }
 
     if (!empty($_POST['addSessionVariable'])) {
         if (!empty($_POST['key']) && !empty($_POST['value'])) {
@@ -43,7 +46,7 @@
         }
         echo "</ul>";
 
-        // echo '<a href="1.php?clearSessionVariables=true">Clear session variables</a>';
+        echo '<a href="1.php?clearSessionVariablesAndCloseSession=true">Clear session variables and close session</a>';
     }
 
 

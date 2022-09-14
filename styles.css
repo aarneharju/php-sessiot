@@ -10,7 +10,11 @@ fieldset {
     width: 550px;
 }
 
+ul,
+a {
+    margin: 20px 20px;
+}
+
 ul {
-    margin: 0 20px;
     list-style-type: none;
 }
